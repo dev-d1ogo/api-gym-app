@@ -1,0 +1,35 @@
+{
+  "name": "03-api-solid",
+  "version": "1.0.0",
+  "description": "App for gyms",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/node": "20.11.30",
+    "@vitest/coverage-v8": "1.4.0",
+    "prisma": "5.11.0",
+    "tsup": "8.0.2",
+    "tsx": "4.7.1",
+    "typescript": "5.4.3",
+    "vitest": "1.4.0"
+  },
+  "dependencies": {
+    "@prisma/client": "5.11.0",
+    "bcryptjs": "2.4.3",
+    "dotenv": "16.4.5",
+    "fastify": "^4.26.2",
+    "zod": "3.22.4"
+  }
+}

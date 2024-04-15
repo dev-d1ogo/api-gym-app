@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  created_at    DateTime @default(now())
+
+  // Hashing != Cryptografia -> Hash apenas cria, enquanto criptografar pode ser descriptografado mais facilmente
+
+  // Relacionamento inverso -> indica que um usuario pode ter diversos check-ins
+  checkIns CheckIn[]
+
+  @@map("users")
+}
+
+model CheckIn {
+  id           String    @id @default(uuid())
+  created_at   DateTime  @default(now())
+  validated_at DateTime?
+
+  //Fazendo o relacionamento entre as tabelas
+  // Criando uma foreign key que cria o campo user_id tendo como referencia o id do model User
+
+  // Relacioanando um check in a um usuario
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  // Relacioanando um check in a uma academia
+  gym    Gym    @relation(fields: [gym_id], references: [id])
+  gym_id String
+
+  @@map("checkins")
+}
+
+model Gym {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  phone       String?
+  latitude    Decimal
+  longitude   Decimal
+  checkIns    CheckIn[]
+
+  @@map("gyms")
+}
