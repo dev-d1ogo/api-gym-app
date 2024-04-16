@@ -23,13 +23,21 @@ export class CheckInUseCase {
 	}
 
 	async checkIn({
-        userId,
-		gymId
+		userId,
+		gymId,
 	}: CheckInUseCaseProps): Promise<CheckInUseCaseResponse> {
-        const checkIn = await this.checkInRepository.createCheckIn({gym_id: gymId, user_id: userId})
+		// Verificando se há um checkIn 
+		const alreadyCheckedInThisDate = await this.checkInRepository.findByUserIdOnDate(userId, new Date())
+
+		if(alreadyCheckedInThisDate){
+			throw new Error("Check-In já criado")
+		}
 		
-        return {
-            checkIn
-        }
+		const checkIn = await this.checkInRepository.createCheckIn({
+			gym_id: gymId,
+			user_id: userId,
+		})
+		return {checkIn}
 	}
+	
 }
