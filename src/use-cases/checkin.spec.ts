@@ -111,6 +111,7 @@ describe("Check-in User Case", () => {
 			latitude: new Decimal(-10.9737188),
 			longitude: new Decimal(-37.0384408),
 			phone: "31231231",
+			created_at: new Date(Date.now())
 		})
 
 		// Mocking date

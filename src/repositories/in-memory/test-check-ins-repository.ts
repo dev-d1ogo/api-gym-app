@@ -41,4 +41,9 @@ export class CheckInsInMemoryRepository implements CheckInsRepository{
         return checkin
     }
 
+    async findManyByUserId(userId: string){
+        const userCheckIns = this.checkins.filter(item => item.user_id === userId)
+
+        return userCheckIns
+    }
 }
