@@ -65,11 +65,8 @@ export class GymsInMemoryRepository implements GymsRepository {
 				gymCoordinates
 			)
 			
-			console.log(distance)
-			
 			return distance < 10
 		})
-
 		return nearbyGyms
 	}
 }
