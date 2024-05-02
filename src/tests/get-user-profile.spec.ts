@@ -1,9 +1,9 @@
 import { expect, describe, it, beforeEach } from "vitest"
 import { hash } from "bcryptjs"
 import { UsersInMemoryRepository } from "../repositories/in-memory/test-users-repository"
-import { InvalidCredentialsError } from "./erros/invalid-credentials-error"
-import { GetProfileUseCase } from "./get-user-profile-use-case"
-import { ResourceNotFoundError } from "./erros/resource-not-found-error"
+import { InvalidCredentialsError } from "../use-cases/erros/invalid-credentials-error"
+import { GetProfileUseCase } from "../use-cases/get-user-profile-use-case"
+import { ResourceNotFoundError } from "../use-cases/erros/resource-not-found-error"
 
 // Criando nossos primeiros testes que irao verificar se um requisito esta sendo atentido
 

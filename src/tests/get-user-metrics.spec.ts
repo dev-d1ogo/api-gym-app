@@ -1,26 +1,25 @@
 import { expect, describe, it, beforeEach } from "vitest"
 import { CheckInsInMemoryRepository } from "../repositories/in-memory/test-check-ins-repository"
-import { FetchHistoryUseCase } from "./fetch-users-check-ins-use-case"
-import { randomUUID } from "crypto"
+import { GetUserMetricsUseCase } from "../use-cases/get-user-metrics-use-case"
 
 // Criando nossos primeiros testes que irao verificar se um requisito esta sendo atentido
 
 // describe -> categoriza testes
 
 let checkInTestRepository: CheckInsInMemoryRepository
-let fetchHistoryUseCase: FetchHistoryUseCase
+let getUserMetrics: GetUserMetricsUseCase
 
 
-describe("Fetch history of user check-ins Use Case", () => {
+describe("Get user Metrics Use Case", () => {
 	beforeEach(async() => {
 		checkInTestRepository = new CheckInsInMemoryRepository()
-		fetchHistoryUseCase= new FetchHistoryUseCase(
+		getUserMetrics= new GetUserMetricsUseCase(
 			checkInTestRepository,
 		)
 	})
 
 
-	it("should be possible pick up the history of user check-ins ", async () => {
+	it("should be possible pick up the check-ins number of an user ", async () => {
         await checkInTestRepository.createCheckIn({
             gym_id: 'gym-test-01',
             user_id: 'user-test',
@@ -31,19 +30,14 @@ describe("Fetch history of user check-ins Use Case", () => {
             user_id: 'user-test',
             created_at: new Date(Date.now()),
         })
+        
 
-		const { userCheckIns }  = await fetchHistoryUseCase.fetchHistory({
+		const {checkInsAmount} = await getUserMetrics.getUserMetrics({
 			userId: "user-test",
 		})
 
-
-		expect(userCheckIns).toEqual([
-            expect.objectContaining({gym_id: 'gym-test-01'}) && expect.objectContaining({user_id: 'user-test'}),
-            expect.objectContaining({gym_id: 'gym-test-02'}) && expect.objectContaining({user_id: 'user-test'})
-
-        ])
-        expect(userCheckIns).toHaveLength(2)
+        console.log(checkInTestRepository)
+        expect(checkInsAmount).toEqual(2)
 		
 	})
-
 })

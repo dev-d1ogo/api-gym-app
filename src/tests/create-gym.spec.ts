@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach } from "vitest"
 
 import { GymsRepository } from "../repositories/gym-repository"
-import { CreateGymUseCase } from "./create-gym-use-case"
+import { CreateGymUseCase } from "../use-cases/create-gym-use-case"
 import { GymsInMemoryRepository } from "../repositories/in-memory/test-gym-repository"
 
 // Criando nossos primeiros testes que irao verificar se um requisito esta sendo atentido

@@ -1,8 +1,8 @@
 import { expect, describe, it, beforeEach } from "vitest"
-import { RegisterUseCase } from "./registerUser-use-case"
+import { RegisterUseCase } from "../use-cases/registerUser-use-case"
 import { compare } from "bcryptjs"
 import { UsersInMemoryRepository } from "../repositories/in-memory/test-users-repository"
-import { UserAlreadyExistsError } from "./erros/user-already-exists-error"
+import { UserAlreadyExistsError } from "../use-cases/erros/user-already-exists-error"
 
 // Criando nossos primeiros testes que irao verificar se um requisito esta sendo atentido
 

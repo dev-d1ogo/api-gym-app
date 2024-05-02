@@ -4,37 +4,36 @@ import { CheckIn } from "@prisma/client"
 
 // Tipagem de entrada
 
-interface FetchHistoryUseCaseProps {
+interface GetUserMetricsUseCaseProps {
 	userId: string
-	page: number
 }
 
 // Tipagem de saida
 
-interface FetchHistoryUseCaseResponse {
-	userCheckIns: CheckIn[]
+interface GetUserMetricsUseCaseResponse {
+	checkInsAmount: number
 }
 
-export class FetchHistoryUseCase {
+export class GetUserMetricsUseCase {
 	private checkInsRepository: CheckInsRepository
 
 	constructor(checkInsRepository: CheckInsRepository) {
 		this.checkInsRepository = checkInsRepository
 	}
 
-	async fetchHistory({
+	async getUserMetrics({
 		userId,
-		page
-	}: FetchHistoryUseCaseProps): Promise<FetchHistoryUseCaseResponse> {
-		const userCheckIns = await this.checkInsRepository.findManyByUserId(
-			userId,
-			page
+	}: GetUserMetricsUseCaseProps): Promise<GetUserMetricsUseCaseResponse> {
+		const userCheckIns = await this.checkInsRepository.countByUserId(
+			userId
 		)
 
 		if (!userCheckIns) {
 			throw new ResourceNotFoundError()
 		}
 
-		return { userCheckIns }
+		return {
+            checkInsAmount: userCheckIns
+        } 
 	}
 }

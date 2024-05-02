@@ -41,9 +41,18 @@ export class CheckInsInMemoryRepository implements CheckInsRepository{
         return checkin
     }
 
-    async findManyByUserId(userId: string){
-        const userCheckIns = this.checkins.filter(item => item.user_id === userId)
+    async findManyByUserId(userId: string, page: number){
+        const userCheckIns = this.checkins
+            .filter(item => item.user_id === userId)
+            .slice((page - 1) * 20, page * 20) // pagination
 
         return userCheckIns
+    }
+
+    async countByUserId(userId: string){
+        const userCheckInsAmount = this.checkins
+            .filter(item => item.user_id === userId).length
+
+        return userCheckInsAmount
     }
 }

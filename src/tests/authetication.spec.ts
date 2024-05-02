@@ -1,8 +1,8 @@
 import { expect, describe, it, beforeEach } from "vitest"
 import { hash } from "bcryptjs"
 import { UsersInMemoryRepository } from "../repositories/in-memory/test-users-repository"
-import { AutenticationUseCase } from "./authentication-use-case"
-import { InvalidCredentialsError } from "./erros/invalid-credentials-error"
+import { AutenticationUseCase } from "../use-cases/authentication-use-case"
+import { InvalidCredentialsError } from "../use-cases/erros/invalid-credentials-error"
 
 // Criando nossos primeiros testes que irao verificar se um requisito esta sendo atentido
 

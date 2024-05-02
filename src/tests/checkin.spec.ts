@@ -1,10 +1,10 @@
 import { expect, describe, it, beforeEach, vi, afterEach } from "vitest"
 import { CheckInsInMemoryRepository } from "../repositories/in-memory/test-check-ins-repository"
-import { CheckInUseCase } from "./checkin-use-case"
+import { CheckInUseCase } from "../use-cases/checkin-use-case"
 import { GymsInMemoryRepository } from "../repositories/in-memory/test-gym-repository"
 import { Decimal } from "@prisma/client/runtime/library"
-import { MaxDistanceNumberOfCheckIns } from "./erros/max-number-of-check-ins"
-import { MaxDistanceReachedError } from "./erros/max-distance-reached-error"
+import { MaxDistanceNumberOfCheckIns } from "../use-cases/erros/max-number-of-check-ins"
+import { MaxDistanceReachedError } from "../use-cases/erros/max-distance-reached-error"
 
 // Criando nossos primeiros testes que irao verificar se um requisito esta sendo atentido
 
