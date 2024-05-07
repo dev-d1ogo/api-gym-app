@@ -1,6 +1,5 @@
 import { ResourceNotFoundError } from "./erros/resource-not-found-error"
 import { CheckInsRepository } from "../repositories/check-in-repository"
-import { CheckIn } from "@prisma/client"
 
 // Tipagem de entrada
 

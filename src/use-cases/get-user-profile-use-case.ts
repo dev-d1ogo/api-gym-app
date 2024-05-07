@@ -3,7 +3,7 @@ import { UsersRepository } from "../repositories/user-repository"
 import { ResourceNotFoundError } from "./erros/resource-not-found-error"
 
 interface GetProfileUseCaseProps {
-    UserId: string,
+    userId: string,
 }
 
 interface GetProfileUseCaseResponse {
@@ -14,9 +14,9 @@ export class GetProfileUseCase {
 	constructor(private userRepository: UsersRepository) {
     }
     
-	async getProfile({UserId}: GetProfileUseCaseProps): Promise<GetProfileUseCaseResponse> {
+	async getProfile({userId}: GetProfileUseCaseProps): Promise<GetProfileUseCaseResponse> {
 		// get user info
-        const user = await this.userRepository.findById(UserId)
+        const user = await this.userRepository.findById(userId)
 
         if(!user){
             throw new ResourceNotFoundError()
